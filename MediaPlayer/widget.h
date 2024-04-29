@@ -20,11 +20,7 @@ private slots:
 
     void on_horizontalSliderVolume_sliderMoved(int position);
 
-    void on_pushButtonStop_clicked();
-
-    void on_pushButtonPause_clicked();
-
-    void on_pushButtonPlay_clicked();
+    void on_durationChanged(qint64 duration);
 
 
 
