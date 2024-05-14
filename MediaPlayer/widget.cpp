@@ -16,6 +16,7 @@ Widget::Widget(QWidget *parent)
     ui->pushButtonNext->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
     ui->pushButtonPrev->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
     ui->pushButtonOpen->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
+    ui->pushButtonMute->setIcon(style()->standardIcon(QStyle::SP_MediaVolume));
 
 
     m_player = new QMediaPlayer();
@@ -26,13 +27,22 @@ Widget::Widget(QWidget *parent)
     connect(ui->pushButtonStop, &QPushButton::clicked, this->m_player, &QMediaPlayer::stop);
     connect(ui->pushButtonPause, &QPushButton::clicked, this->m_player, &QMediaPlayer::pause);
 
+
     connect(this->m_player,&QMediaPlayer::durationChanged, this,&Widget::on_durationChanged);
+    connect(this->m_player,&QMediaPlayer::positionChanged,this,&Widget::on_positionCahnged);
+
+    //              INIT PLAYLSIT
+    m_playlist_model = new QStandardItemModel(this);
+    ui->tableViewPlaylist->setModel(m_playlist_model);
+    m_playlist_model->setHorizontalHeaderLabels(QStringList()<<"Track"<<"File");
 }
 
 Widget::~Widget()
 {
     delete m_player;
     delete ui;
+    delete m_playlist_model;
+    delete m_playlist;
 }
 
 
@@ -43,6 +53,8 @@ void Widget::on_pushButtonOpen_clicked()
     ui->labelFile->setText(file);
     m_player->setMedia(QUrl::fromLocalFile(file));       
     m_player->play();
+    m_player->media();
+    this->setWindowTitle(QString("Media Player ").append(file.split('/').last()));
 
 }
 
@@ -63,9 +75,23 @@ void Widget::on_durationChanged(qint64 duration)
                                .append(qt_duration.toString(duration< 3600000 ? "mm:ss" : "hh:mm:ss")));
 }
 
+void Widget::on_positionCahnged(qint64 position)
+{
+    ui->horizontalSliderProgress->setValue(position);
+    QTime qt_duration = QTime::fromMSecsSinceStartOfDay(position);
 
+    ui->labelProgress->setText(QString("Duration: ")
+                               .append(qt_duration.toString(position< 3600000 ? "mm:ss" : "hh:mm:ss")));
+}
 
+void Widget::on_pushButtonMute_clicked()
+{
+    m_player->setMuted(!m_player->isMuted());
+    ui->pushButtonMute->setIcon(style()->standardIcon(m_player->isMuted()?QStyle::SP_MediaVolumeMuted : QStyle::SP_MediaVolume));
+}
 
-
-
+void Widget::on_horizontalSliderProgress_sliderMoved(int position)
+{
+    m_player->setPosition(position);
+}
 

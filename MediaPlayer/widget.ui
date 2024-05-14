@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>216</height>
+    <width>520</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>522</width>
-    <height>216</height>
+    <width>520</width>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>522</width>
-    <height>216</height>
+    <width>520</width>
+    <height>400</height>
    </size>
   </property>
   <property name="font">
@@ -158,8 +158,8 @@
   <widget class="QPushButton" name="pushButtonOpen">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>180</y>
+     <x>10</x>
+     <y>370</y>
      <width>51</width>
      <height>21</height>
     </rect>
@@ -190,7 +190,7 @@
   <widget class="QSlider" name="horizontalSliderVolume">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>330</x>
      <y>50</y>
      <width>71</width>
      <height>20</height>
@@ -206,7 +206,7 @@
   <widget class="QLabel" name="labelVolume">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>410</x>
      <y>50</y>
      <width>121</width>
      <height>21</height>
@@ -221,7 +221,7 @@
     <rect>
      <x>20</x>
      <y>100</y>
-     <width>71</width>
+     <width>151</width>
      <height>21</height>
     </rect>
    </property>
@@ -240,6 +240,29 @@
    </property>
    <property name="text">
     <string>Duration</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonMute">
+   <property name="geometry">
+    <rect>
+     <x>306</x>
+     <y>50</y>
+     <width>20</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableViewPlaylist">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>501</width>
+     <height>211</height>
+    </rect>
    </property>
   </widget>
  </widget>
