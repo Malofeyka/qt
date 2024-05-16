@@ -30,6 +30,21 @@ private slots:
 
     void on_horizontalSliderProgress_sliderMoved(int position);
 
+    void on_current_index_changed(int position);
+
+    void on_pushButtonClear_clicked();
+
+    void on_pushButtonDelete_clicked();
+
+
+    void on_radioButtonLoop_clicked();
+
+    void on_radioButtonShuffle_clicked();
+
+    void on_radioButtonNormal_clicked();
+
+    void on_pushButtonSave_clicked();
+
 private:
     Ui::Widget *ui;
 
